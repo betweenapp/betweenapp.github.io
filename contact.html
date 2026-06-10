@@ -91,34 +91,53 @@ placeholder="@username"
 
 <script>
 
-function saveLead(){
+const supabaseUrl =
+'https://zftffpngezokbcbszyvw.supabase.co';
 
-const tg =
-document.getElementById("telegram").value;
+const supabaseKey =
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmdGZmcG5nZXpva2JjYnN6eXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDUzMDUsImV4cCI6MjA5NjY4MTMwNX0.I3BPJZVs-IN64ZNiJHbP8RRfm-RPQYbjyya6AdV00FU';
 
-if(!tg){
-alert("Введите Telegram");
-return;
-}
-
-let leads =
-JSON.parse(
-localStorage.getItem("leads") || "[]"
+const supabase =
+window.supabase.createClient(
+supabaseUrl,
+supabaseKey
 );
 
-leads.push({
-telegram: tg,
-date: new Date()
-});
+async function saveLead(){
 
-localStorage.setItem(
-"leads",
-JSON.stringify(leads)
-);
+    const telegram =
+    document.getElementById('telegram').value;
 
-document.getElementById(
-"success"
-).style.display = "block";
+    const chat =
+    localStorage.getItem('chat');
+
+    if(!telegram){
+
+        alert('Введите Telegram');
+        return;
+
+    }
+
+    const { error } =
+    await supabase
+    .from('Leads')
+    .insert([
+        {
+            name: telegram,
+            chat: chat
+        }
+    ]);
+
+    if(error){
+
+        console.log(error);
+        alert('Ошибка сохранения');
+
+    }else{
+
+        alert('Заявка отправлена 💜');
+
+    }
 
 }
 

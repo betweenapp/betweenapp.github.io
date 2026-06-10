@@ -234,5 +234,25 @@ document.getElementById('imagesName').innerText =
 
 </script>
 
+<script>
+
+async function sendChat(){
+
+const text =
+document.querySelector(".textarea").value;
+
+if(!text.trim()){
+alert("Вставьте переписку");
+return;
+}
+
+localStorage.setItem("chat", text);
+
+window.location.href = "loading.html";
+
+}
+
+</script>    
+    
 </body>
 </html>

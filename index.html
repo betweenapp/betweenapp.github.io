@@ -1,9 +1,247 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-<title>Between</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>between</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+    background:#090909;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background:
+    radial-gradient(circle at top,#3f2a68 0%,transparent 35%),
+    radial-gradient(circle at bottom,#1d365f 0%,transparent 35%),
+    #090909;
+}
+
+.container{
+    max-width:430px;
+    margin:auto;
+    padding:28px 22px 40px;
+}
+
+.logo{
+    text-align:center;
+    font-size:18px;
+    letter-spacing:4px;
+    opacity:.7;
+    margin-top:10px;
+    margin-bottom:60px;
+}
+
+h1{
+    font-size:44px;
+    line-height:1.02;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.subtitle{
+    font-size:18px;
+    line-height:1.5;
+    color:rgba(255,255,255,.65);
+    margin-bottom:42px;
+}
+
+.card{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(30px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:32px;
+    padding:28px;
+    margin-bottom:30px;
+}
+
+.score{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:28px;
+}
+
+.circle{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.1);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.number{
+    font-size:48px;
+    font-weight:700;
+}
+
+.label{
+    opacity:.6;
+    font-size:14px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    text-align:center;
+    line-height:1.2;
+}
+
+.insight{
+    padding:16px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    color:rgba(255,255,255,.85);
+    line-height:1.5;
+}
+
+.insight:last-child{
+    border:none;
+}
+
+.button{
+    width:100%;
+    border:none;
+    border-radius:24px;
+    padding:20px;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    background:white;
+    color:black;
+}
+
+.note{
+    text-align:center;
+    margin-top:16px;
+    color:rgba(255,255,255,.45);
+    font-size:14px;
+}
+
+.bottom{
+    margin-top:50px;
+}
+
+.bottom-title{
+    font-size:26px;
+    margin-bottom:16px;
+}
+
+.feature{
+    color:rgba(255,255,255,.7);
+    margin-bottom:10px;
+    line-height:1.5;
+}
+
+.fade{
+    animation:fade 1.2s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
 </head>
+
 <body>
-<h1>Between работает 🎉</h1>
+
+<div class="bg"></div>
+
+<div class="container fade">
+
+<div class="logo">
+BETWEEN
+</div>
+
+<h1>
+Что показывает ваша переписка?
+</h1>
+
+<p class="subtitle">
+Иногда ответы уже есть в сообщениях.
+Нужно лишь увидеть их.
+</p>
+
+<div class="card">
+
+<div class="score">
+
+<div class="circle">
+<div class="number">72</div>
+<div class="label">Уровень интереса</div>
+</div>
+
+</div>
+
+<div class="insight">
+Он отвечает быстро, но редко задаёт вопросы о вас.
+</div>
+
+<div class="insight">
+Инициатива чаще исходит от вас.
+</div>
+
+<div class="insight">
+Явных признаков эмоциональных манипуляций не обнаружено.
+</div>
+
+</div>
+
+<button class="button" onclick="window.location.href='upload.html'">
+Загрузить переписку
+</button>
+
+<div class="note">
+Первый разбор бесплатно
+</div>
+
+<div class="bottom">
+
+<div class="bottom-title">
+Что вы получите
+</div>
+
+<div class="feature">
+Анализ заинтересованности и инициативы
+</div>
+
+<div class="feature">
+Выявление эмоциональных паттернов
+</div>
+
+<div class="feature">
+Красные и зелёные флаги общения
+</div>
+
+<div class="feature">
+Персональные рекомендации
+</div>
+
+</div>
+
+</div>
+
 </body>
 </html>

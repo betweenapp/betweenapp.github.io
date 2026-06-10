@@ -1,1 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>between</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+background:#090909;
+color:white;
+min-height:100vh;
+}
+
+.bg{
+position:fixed;
+inset:0;
+z-index:-1;
+background:
+radial-gradient(circle at top,#4b2d7f 0%,transparent 35%),
+radial-gradient(circle at bottom,#193c6a 0%,transparent 35%),
+#090909;
+}
+
+.container{
+max-width:430px;
+margin:auto;
+padding:24px 18px 50px;
+}
+
+.logo{
+text-align:center;
+letter-spacing:4px;
+opacity:.7;
+margin-bottom:30px;
+}
+
+.hero{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+border-radius:30px;
+padding:28px;
+margin-bottom:18px;
+backdrop-filter:blur(20px);
+}
+
+.hero-title{
+font-size:14px;
+opacity:.6;
+text-transform:uppercase;
+letter-spacing:1px;
+text-align:center;
+}
+
+.hero-score{
+font-size:72px;
+font-weight:700;
+text-align:center;
+margin-top:10px;
+}
+
+.hero-text{
+text-align:center;
+line-height:1.5;
+color:rgba(255,255,255,.8);
+margin-top:10px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-bottom:18px;
+}
+
+.metric{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+border-radius:22px;
+padding:18px;
+}
+
+.metric-value{
+font-size:30px;
+font-weight:700;
+}
+
+.metric-label{
+opacity:.65;
+margin-top:4px;
+font-size:14px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+border-radius:22px;
+padding:20px;
+margin-bottom:16px;
+}
+
+.title{
+font-size:18px;
+font-weight:600;
+margin-bottom:16px;
+}
+
+.item{
+margin-bottom:12px;
+line-height:1.5;
+color:rgba(255,255,255,.85);
+}
+
+.progress-label{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+font-size:14px;
+}
+
+.progress{
+height:10px;
+background:rgba(255,255,255,.08);
+border-radius:999px;
+overflow:hidden;
+}
+
+.progress-fill{
+height:100%;
+width:67%;
+background:white;
+border-radius:999px;
+}
+
+.locked{
+position:relative;
+overflow:hidden;
+}
+
+.blur{
+filter:blur(8px);
+}
+
+.paywall{
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+background:rgba(9,9,9,.72);
+backdrop-filter:blur(8px);
+}
+
+.paywall-inner{
+text-align:center;
+padding:20px;
+}
+
+.price{
+font-size:32px;
+font-weight:700;
+margin-top:8px;
+}
+
+.button{
+width:100%;
+padding:20px;
+border:none;
+border-radius:22px;
+font-size:18px;
+font-weight:600;
+background:white;
+color:black;
+margin-top:18px;
+cursor:pointer;
+}
+
+.small{
+margin-top:12px;
+text-align:center;
+opacity:.45;
+font-size:13px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+
+<div class="logo">
+BETWEEN
+</div>
+
+<div class="hero">
+
+<div class="hero-title">
+Вероятность взаимного интереса
+</div>
+
+<div class="hero-score" id="mainScore">
+78%
+</div>
+
+<div class="hero-text">
+Вы нравитесь собеседнику, но инициатива распределена неравномерно.
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="metric">
+<div class="metric-value" id="interest">72%</div>
+<div class="metric-label">Интерес</div>
+</div>
+
+<div class="metric">
+<div class="metric-value" id="mutual">61%</div>
+<div class="metric-label">Взаимность</div>
+</div>
+
+<div class="metric">
+<div class="metric-value" id="emotion">84%</div>
+<div class="metric-label">Вовлечённость</div>
+</div>
+
+<div class="metric">
+<div class="metric-value" id="initiative">43%</div>
+<div class="metric-label">Инициатива</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+Что показывает переписка
+</div>
+
+<div class="item">
+✓ Отвечает достаточно быстро
+</div>
+
+<div class="item">
+✓ Возвращается к диалогу после пауз
+</div>
+
+<div class="item">
+✓ Помнит детали разговоров
+</div>
+
+<div class="item">
+⚠ Редко инициирует новые темы
+</div>
+
+<div class="item">
+⚠ Вопросов о вас меньше среднего
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+Кто вкладывается больше?
+</div>
+
+<div class="progress-label">
+<span>Вы</span>
+<span>67%</span>
+</div>
+
+<div class="progress">
+<div class="progress-fill"></div>
+</div>
+
+</div>
+
+<div class="card locked">
+
+<div class="blur">
+
+<div class="title">
+Вероятность развития отношений
+</div>
+
+<div class="item">
+82%
+</div>
+
+<div class="item">
+Наиболее вероятный сценарий развития общения...
+</div>
+
+<br>
+
+<div class="title">
+Что лучше сделать дальше
+</div>
+
+<div class="item">
+Персональная рекомендация на основе поведения собеседника...
+</div>
+
+</div>
+
+<div class="paywall">
+
+<div class="paywall-inner">
+
+Откройте полный анализ
+
+<div class="price">
+299 ₽
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="button">
+Получить полный разбор — 299 ₽
+</button>
+
+<div class="small">
+Первый полный разбор со скидкой
+</div>
+
+</div>
+
+<script>
+
+function rand(min,max){
+return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+document.getElementById("mainScore").innerText =
+rand(72,89)+"%";
+
+document.getElementById("interest").innerText =
+rand(68,92)+"%";
+
+document.getElementById("mutual").innerText =
+rand(50,85)+"%";
+
+document.getElementById("emotion").innerText =
+rand(70,95)+"%";
+
+document.getElementById("initiative").innerText =
+rand(35,75)+"%";
+
+</script>
+
+</body>
+</html>

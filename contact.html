@@ -110,6 +110,8 @@ supabaseKey
 
 async function saveLead(){
 
+alert('Кнопка нажалась');
+
 const telegram =
 document.getElementById('telegram').value;
 
@@ -117,10 +119,8 @@ const chat =
 localStorage.getItem('chat') || '';
 
 if(!telegram){
-
 alert('Введите Telegram');
 return;
-
 }
 
 const { error } =
@@ -136,9 +136,15 @@ chat: chat
 if(error){
 
 console.log(error);
-alert(error.message);
+
+alert(
+'Ошибка: ' +
+error.message
+);
 
 }else{
+
+alert('Сохранено!');
 
 document.getElementById(
 'success'

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>between</title>
+
+<style>
+
+body{
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+background:#090909;
+color:white;
+padding:24px;
+}
+
+.container{
+max-width:430px;
+margin:auto;
+}
+
+h1{
+font-size:36px;
+margin-bottom:12px;
+}
+
+.subtitle{
+opacity:.7;
+line-height:1.5;
+margin-bottom:30px;
+}
+
+input{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+background:rgba(255,255,255,.08);
+color:white;
+font-size:16px;
+margin-bottom:16px;
+}
+
+button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+background:white;
+color:black;
+font-size:18px;
+font-weight:600;
+}
+
+.success{
+margin-top:20px;
+text-align:center;
+display:none;
+opacity:.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+Получить полный разбор
+</h1>
+
+<div class="subtitle">
+Оставьте Telegram и мы пришлём персональный анализ.
+</div>
+
+<input
+id="telegram"
+placeholder="@username"
+/>
+
+<button onclick="saveLead()">
+Получить анализ
+</button>
+
+<div class="success" id="success">
+Заявка отправлена 💜
+</div>
+
+</div>
+
+<script>
+
+function saveLead(){
+
+const tg =
+document.getElementById("telegram").value;
+
+if(!tg){
+alert("Введите Telegram");
+return;
+}
+
+let leads =
+JSON.parse(
+localStorage.getItem("leads") || "[]"
+);
+
+leads.push({
+telegram: tg,
+date: new Date()
+});
+
+localStorage.setItem(
+"leads",
+JSON.stringify(leads)
+);
+
+document.getElementById(
+"success"
+).style.display = "block";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>between</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+    background:#090909;
+    color:white;
+    min-height:100vh;
+}
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background:
+    radial-gradient(circle at top,#3f2a68 0%,transparent 35%),
+    radial-gradient(circle at bottom,#1d365f 0%,transparent 35%),
+    #090909;
+}
+
+.container{
+    max-width:430px;
+    margin:auto;
+    padding:28px 22px 40px;
+}
+
+.logo{
+    text-align:center;
+    font-size:18px;
+    letter-spacing:4px;
+    opacity:.7;
+    margin-top:10px;
+    margin-bottom:50px;
+}
+
+.back{
+    color:white;
+    text-decoration:none;
+    opacity:.6;
+    font-size:15px;
+}
+
+h1{
+    font-size:40px;
+    line-height:1.1;
+    margin-top:25px;
+    margin-bottom:16px;
+}
+
+.subtitle{
+    color:rgba(255,255,255,.65);
+    line-height:1.5;
+    margin-bottom:32px;
+}
+
+.upload-card{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(30px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:30px;
+    padding:24px;
+}
+
+.upload-btn{
+    display:block;
+    width:100%;
+    padding:20px;
+    text-align:center;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.04);
+    cursor:pointer;
+    margin-bottom:14px;
+}
+
+.upload-btn:active{
+    transform:scale(.98);
+}
+
+input[type=file]{
+    display:none;
+}
+
+.file-name{
+    text-align:center;
+    font-size:13px;
+    color:rgba(255,255,255,.45);
+    margin-bottom:18px;
+}
+
+.or{
+    text-align:center;
+    margin:10px 0 18px;
+    opacity:.35;
+}
+
+.textarea{
+    width:100%;
+    min-height:160px;
+    resize:none;
+    border:none;
+    outline:none;
+    background:rgba(255,255,255,.04);
+    border-radius:20px;
+    padding:18px;
+    color:white;
+    font-size:16px;
+    line-height:1.5;
+}
+
+.textarea::placeholder{
+    color:rgba(255,255,255,.35);
+}
+
+.button{
+    width:100%;
+    margin-top:22px;
+    border:none;
+    border-radius:22px;
+    padding:20px;
+    font-size:18px;
+    font-weight:600;
+    background:white;
+    color:black;
+    cursor:pointer;
+}
+
+.note{
+    margin-top:18px;
+    text-align:center;
+    font-size:13px;
+    color:rgba(255,255,255,.45);
+    line-height:1.5;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+
+<a href="index.html" class="back">← Назад</a>
+
+<div class="logo">
+BETWEEN
+</div>
+
+<h1>
+Загрузите переписку
+</h1>
+
+<p class="subtitle">
+Добавьте скриншоты, экспорт чата или вставьте текст вручную.
+</p>
+
+<div class="upload-card">
+
+<label class="upload-btn">
+📸 Загрузить скриншоты
+<input id="images" type="file" multiple accept="image/*">
+</label>
+
+<div id="imagesName" class="file-name">
+Файлы не выбраны
+</div>
+
+<div class="or">или</div>
+
+<label class="upload-btn">
+💬 Импортировать чат WhatsApp / Telegram
+<input id="chatFile" type="file" accept=".txt,.zip,.json,.html">
+</label>
+
+<div id="chatName" class="file-name">
+Файл не выбран
+</div>
+
+<div class="or">или</div>
+
+<textarea
+class="textarea"
+placeholder="Вставьте переписку сюда..."
+></textarea>
+
+<button
+class="button"
+onclick="window.location.href='loading.html'">
+Начать анализ
+</button>
+
+</div>
+
+<div class="note">
+Ваши данные никому не передаются и используются только для анализа.
+</div>
+
+</div>
+
+<script>
+
+document.getElementById('chatFile').addEventListener('change', function(){
+
+if(this.files.length > 0){
+document.getElementById('chatName').innerText =
+'Выбран файл: ' + this.files[0].name;
+}
+
+});
+
+document.getElementById('images').addEventListener('change', function(){
+
+if(this.files.length > 0){
+document.getElementById('imagesName').innerText =
+'Выбрано файлов: ' + this.files.length;
+}
+
+});
+
+</script>
+
+</body>
+</html>

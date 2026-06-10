@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>between</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
@@ -17,10 +20,11 @@ padding:24px;
 .container{
 max-width:430px;
 margin:auto;
+padding-top:60px;
 }
 
 h1{
-font-size:36px;
+font-size:34px;
 margin-bottom:12px;
 }
 
@@ -35,7 +39,7 @@ width:100%;
 padding:18px;
 border:none;
 border-radius:18px;
-background:rgba(255,255,255,.08);
+background:#1a1a1a;
 color:white;
 font-size:16px;
 margin-bottom:16px;
@@ -50,25 +54,24 @@ background:white;
 color:black;
 font-size:18px;
 font-weight:600;
+cursor:pointer;
 }
 
 .success{
 margin-top:20px;
 text-align:center;
 display:none;
-opacity:.8;
+color:#7cff9d;
 }
 
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="container">
 
-<h1>
-Получить полный разбор
-</h1>
+<h1>Получить полный разбор</h1>
 
 <div class="subtitle">
 Оставьте Telegram и мы пришлём персональный анализ.
@@ -83,7 +86,9 @@ placeholder="@username"
 Получить анализ
 </button>
 
-<div class="success" id="success">
+<div
+class="success"
+id="success">
 Заявка отправлена 💜
 </div>
 
@@ -95,7 +100,7 @@ const supabaseUrl =
 'https://zftffpngezokbcbszyvw.supabase.co';
 
 const supabaseKey =
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmdGZmcG5nZXpva2JjYnN6eXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDUzMDUsImV4cCI6MjA5NjY4MTMwNX0.I3BPJZVs-IN64ZNiJHbP8RRfm-RPQYbjyya6AdV00FU';
+'ТВОЙ_КЛЮЧ';
 
 const supabase =
 window.supabase.createClient(
@@ -105,45 +110,45 @@ supabaseKey
 
 async function saveLead(){
 
-    const telegram =
-    document.getElementById('telegram').value;
+const telegram =
+document.getElementById('telegram').value;
 
-    const chat =
-    localStorage.getItem('chat');
+const chat =
+localStorage.getItem('chat') || '';
 
-    if(!telegram){
+if(!telegram){
 
-        alert('Введите Telegram');
-        return;
+alert('Введите Telegram');
+return;
 
-    }
+}
 
-    const { error } =
-    await supabase
-    .from('Leads')
-    .insert([
-        {
-            name: telegram,
-            chat: chat
-        }
-    ]);
+const { error } =
+await supabase
+.from('Leads')
+.insert([
+{
+name: telegram,
+chat: chat
+}
+]);
 
-    if(error){
+if(error){
 
-        console.log(error);
-        alert('Ошибка сохранения');
+console.log(error);
+alert(error.message);
 
-    }else{
+}else{
 
-        alert('Заявка отправлена 💜');
+document.getElementById(
+'success'
+).style.display='block';
 
-    }
+}
 
 }
 
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
 </body>
 </html>

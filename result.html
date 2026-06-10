@@ -332,10 +332,8 @@ BETWEEN
 
 </div>
 
-<button
-class="button"
-onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSfmOQ3U89XVMxn8WL-b8CqRWJKmf9EqaBff1fvU14PDqJhaHg/viewform?usp=dialog'">
-Получить полный разбор
+<button onclick="saveLead()">
+Получить анализ
 </button>
 
 <div class="small">
@@ -346,24 +344,55 @@ onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSfmOQ3U8
 
 <script>
 
-function rand(min,max){
-return Math.floor(Math.random()*(max-min+1))+min;
+const supabaseUrl =
+'https://zftffpngezokbcbszyvw.supabase.co';
+
+const supabaseKey =
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmdGZmcG5nZXpva2JjYnN6eXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDUzMDUsImV4cCI6MjA5NjY4MTMwNX0.I3BPJZVs-IN64ZNiJHbP8RRfm-RPQYbjyya6AdV00FU';
+
+const supabase =
+window.supabase.createClient(
+supabaseUrl,
+supabaseKey
+);
+
+async function saveLead(){
+
+    const telegram =
+    document.getElementById('telegram').value;
+
+    const chat =
+    localStorage.getItem('chat');
+
+    if(!telegram){
+
+        alert('Введите Telegram');
+        return;
+
+    }
+
+    const { data, error } =
+    await supabase
+    .from('leads')
+    .insert([
+        {
+            telegram: telegram,
+            chat: chat
+        }
+    ]);
+
+    if(error){
+
+        console.log(error);
+        alert('Ошибка сохранения');
+
+    }else{
+
+        alert('Заявка отправлена 💜');
+
+    }
+
 }
-
-document.getElementById("mainScore").innerText =
-rand(72,89)+"%";
-
-document.getElementById("interest").innerText =
-rand(68,92)+"%";
-
-document.getElementById("mutual").innerText =
-rand(50,85)+"%";
-
-document.getElementById("emotion").innerText =
-rand(70,95)+"%";
-
-document.getElementById("initiative").innerText =
-rand(35,75)+"%";
 
 </script>
 
